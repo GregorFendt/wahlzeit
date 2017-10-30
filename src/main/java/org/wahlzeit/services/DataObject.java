@@ -39,6 +39,11 @@ public abstract class DataObject implements Persistent, Serializable {
 	protected transient int writeCount = 0;
 
 	/**
+	 * The specific Location of a DataObject
+	 */
+	public Location location;
+
+	/**
 	 *
 	 */
 	public final boolean isDirty() {
