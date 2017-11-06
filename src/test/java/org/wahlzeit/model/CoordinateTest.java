@@ -10,6 +10,8 @@
 package org.wahlzeit.services;
 
 import org.junit.*;
+import org.wahlzeit.model.Location;
+import org.wahlzeit.model.Coordinate;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
