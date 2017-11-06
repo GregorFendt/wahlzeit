@@ -1,12 +1,12 @@
 /*
  *   Classname: Coordinate
  *
- *   Version: 1.0 [created because of the 2nd ADAP-homework]
+ *   Version: 1.1 [update 2nd ADAP-reviews]
  *
- *   Date: 29.10.2017
+ *   Date: 06.11.2017
  *
  */
-package org.wahlzeit.services;
+package org.wahlzeit.model;
 
 
 /**
@@ -15,13 +15,9 @@ package org.wahlzeit.services;
 public class Coordinate {
 
     /**
-     * Constructs and initializes a coordinate with a specified (x,y,z) location
+     * Limit in which 2 doubles are still considered equal
      */
-    public Coordinate(double x, double y, double z){
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
+    private static final double DELTA = 1E-6;
 
     /**
      * The X value of this coordinate
@@ -35,6 +31,15 @@ public class Coordinate {
      * The Z value of this coordinate
      */
     private double z;
+
+    /**
+     * Constructs and initializes a coordinate with a specified (x,y,z) location
+     */
+    public Coordinate(double x, double y, double z){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 
     /**
      * Getter Method for x
@@ -71,25 +76,48 @@ public class Coordinate {
 
 
     /**
-     * Checks if the 3 coordinates(x,y,z) are the same for both Coordinate classes
+     * Checks if the 3 coordinates(x,y,z) are exactly! the same for both Coordinate classes
      * @param coord reference Coordinate with which to compare
      * @return true if both Coordinate-classes are the same in all 3 coordinates, false otherwise
      */
     public boolean isEqual(Coordinate coord){
 
-        if(this. x == coord.getX() && this.y == coord.getY() && this.z == coord.getZ()){
+        if(coord == null) {
+            return false;
+        }
+
+        if(isDoubleEqual(this.x, coord.getX()) && isDoubleEqual(this.y, coord.getY()) && isDoubleEqual(this.z, coord.getZ())){
             return true;
         }
+
         return false;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null && !(obj instanceof Coordinate)){
+            return false;
+        }
+        return this.isEqual((Coordinate) obj);
+    }
+
     /**
-    * Checks if the 3 coordinates(x,y,z) are the same for both Coordinate classes
-    * @param coord reference Coordinate with which to compare
-    * @return true if both Coordinate-classes are the same in all 3 coordinates, false otherwise
-    */
-    public boolean equals(Coordinate coord){
-        return this.isEqual(coord);
+     * Helpermethod to check if 2 doubles are equal
+     * @param x double
+     * @param y double
+     * @return true if both doubles are considered equal
+     */
+    public boolean isDoubleEqual(double x, double y){
+        return Math.abs(x - y) <= DELTA;
+    }
+
+    @Override
+    public int hashCode(){
+        int hash = 0;
+        hash += Math.floor(x * 1E6) / 1E6;
+        hash += Math.floor(y * 1E6) / 1E6;
+        hash += Math.floor(z * 1E6) / 1E6;
+       return hash;
     }
 
 }

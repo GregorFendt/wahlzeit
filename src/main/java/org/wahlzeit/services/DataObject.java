@@ -20,6 +20,8 @@
 
 package org.wahlzeit.services;
 
+import org.wahlzeit.model.Location;
+
 import java.io.Serializable;
 
 /**
@@ -37,11 +39,6 @@ public abstract class DataObject implements Persistent, Serializable {
 	 *
 	 */
 	protected transient int writeCount = 0;
-
-	/**
-	 * The specific Location of a DataObject
-	 */
-	public Location location;
 
 	/**
 	 *
