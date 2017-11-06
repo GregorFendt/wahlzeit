@@ -1,28 +1,25 @@
 /*
- *  Classname: LocationCoordinateTest
+ *  Classname: CoordinateTest
  *
- *  Version: 1.0 [created because of 2nd ADAP-homework]
+ *  Version: 1.0 [created because of 2nd ADAP-reviews]
  *
- *  Date: 30.10.2017
+ *  Date: 06.11.2017
  *
  */
 
-package org.wahlzeit.services;
+package org.wahlzeit.model;
 
 import org.junit.*;
-import org.wahlzeit.model.Location;
-import org.wahlzeit.model.Coordinate;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
 /**
- * Testcases for the Location and Coordinate classes
+ * Testcases for the Coordinate class
  */
-public class LocationCoordinateTest {
+public class CoordinateTest {
 
-    private Location loc1;
-    private Location loc2;
     private Coordinate coord1;
     private Coordinate coord2;
     private Coordinate coord3;
@@ -33,7 +30,6 @@ public class LocationCoordinateTest {
     @Before
     public void initialize(){
         initializeCoordinates();
-        initializeLocations();
     }
 
     public void initializeCoordinates(){
@@ -43,21 +39,13 @@ public class LocationCoordinateTest {
         coord3 = new Coordinate(-1.1, 13.5, 4.99);
     }
 
-    public void initializeLocations(){
-        loc1 = new Location();
-        loc2 = new Location();
-    }
-
     /**
      * Test the getterMethods of the Coordinate class
      */
     @Test
     public void getterMethodsTest(){
-
-        loc1.coordinate = coord1;
-        assertEquals(loc1.coordinate.getZ(), 0.0);
-        loc2.coordinate = coord2;
-        assertEquals(loc2.coordinate.getX(), 10.0);
+        assertEquals(coord1.getZ(), 0.0);
+        assertEquals(coord2.getX(), 10.0);
         assertEquals(coord2.getX(), 10.0);
         assertEquals(coord2.getY(), 20.2);
         assertEquals(coord2.getZ(), 45.0);
@@ -90,5 +78,7 @@ public class LocationCoordinateTest {
         assertTrue(coord1.isEqual(new Coordinate(0.0, 0.0, 0.0)));
         assertTrue(coord2.isEqual(new Coordinate(10.0, 20.2, 45.0)));
         assertTrue(coord3.isEqual(new Coordinate(-1.1, 13.5, 4.99)));
+        assertFalse(coord1.equals(null));
+        assertFalse(coord1.isEqual(null));
     }
 }
