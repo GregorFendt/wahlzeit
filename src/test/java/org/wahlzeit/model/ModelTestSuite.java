@@ -8,7 +8,7 @@ import org.wahlzeit.model.persistence.DatastoreAdapterTest;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-        AbstractAdapterTest.class,
+        //AbstractAdapterTest.class,
         DatastoreAdapterTest.class,
         AccessRightsTest.class,
         CoordinateTest.class,
@@ -21,5 +21,5 @@ import org.wahlzeit.model.persistence.DatastoreAdapterTest;
         UserStatusTest.class,
         ValueTest.class
 })
-public class modelSuite {
+public class ModelTestSuite {
 }

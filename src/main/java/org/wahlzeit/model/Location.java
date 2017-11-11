@@ -19,6 +19,7 @@ public class Location {
     private Coordinate coordinate;
 
     /**
+     * @methodtype get
      * Getter method for the Coordinate-class of Location
      * @return Coordinate class or Null if not set
      */
@@ -27,6 +28,7 @@ public class Location {
     }
 
     /**
+     * @methodtype set
      * Setter method for the Coordinate-class of Location
      * @param coord Coordinate to be set for Location
      */

@@ -33,6 +33,7 @@ public class Coordinate {
     private double z;
 
     /**
+     * @methodype initialization
      * Constructs and initializes a coordinate with a specified (x,y,z) location
      */
     public Coordinate(double x, double y, double z){
@@ -42,7 +43,7 @@ public class Coordinate {
     }
 
     /**
-     * Getter Method for x
+     * @methodtype get
      * @return corresponding x coordinate
      */
     public double getX(){
@@ -50,7 +51,7 @@ public class Coordinate {
     }
 
     /**
-     * Getter Method for y
+     * @methodtype get
      * @return corresponding y coordinate
      */
     public double getY(){
@@ -58,7 +59,7 @@ public class Coordinate {
     }
 
     /**
-     * Getter Method for z
+     * @methodtype get
      * @return corresponding z coordinate
      */
     public double getZ(){
@@ -66,6 +67,7 @@ public class Coordinate {
     }
 
     /**
+     * @methodtype comparison
      * Calculates direct distance between this and the given Coordinate in double precision
      * @param coord reference Coordinate with which the direct distance is calculated of
      * @return the direct distance between the 2 Coordinate-classes in double precision
@@ -76,6 +78,7 @@ public class Coordinate {
 
 
     /**
+     * @methodtype comparison
      * Checks if the 3 coordinates(x,y,z) are exactly! the same for both Coordinate classes
      * @param coord reference Coordinate with which to compare
      * @return true if both Coordinate-classes are the same in all 3 coordinates, false otherwise
@@ -102,6 +105,7 @@ public class Coordinate {
     }
 
     /**
+     * @methodtype comparison
      * Helpermethod to check if 2 doubles are equal
      * @param x double
      * @param y double

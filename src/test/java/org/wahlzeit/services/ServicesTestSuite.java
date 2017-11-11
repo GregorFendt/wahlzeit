@@ -6,9 +6,9 @@ import  org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-        EmailSuite.class,
+        EmailTestSuite.class,
         LogBuilderTest.class
 })
 
-public class servicesSuite {
+public class ServicesTestSuite {
 }

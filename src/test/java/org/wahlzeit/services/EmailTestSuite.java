@@ -12,5 +12,5 @@ import org.wahlzeit.services.mailing.EmailServiceTest;
         EmailServiceTest.class
 })
 
-public class EmailSuite {
+public class EmailTestSuite {
 }

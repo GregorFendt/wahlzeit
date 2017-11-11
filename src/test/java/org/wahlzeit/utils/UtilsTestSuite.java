@@ -10,5 +10,5 @@ import  org.junit.runners.Suite;
         VersionTest.class
 })
 
-public class utilsSuite {
+public class UtilsTestSuite {
 }
