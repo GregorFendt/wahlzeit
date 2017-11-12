@@ -8,17 +8,39 @@
  */
 package org.wahlzeit.model;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
 /**
  * KleinbaerPhotoManager manages Kleinbaer photos
  */
 public class KleinbaerPhotoManager extends PhotoManager {
 
-     protected KleinbaerPhotoManager instance = new KleinbaerPhotoManager();
+     protected static final KleinbaerPhotoManager instance = new KleinbaerPhotoManager();
 
      /**
       * @methodtype initialization
       */
-     protected KleinbaerPhotoManager(){
+     protected KleinbaerPhotoManager() {
           super();
+          photoTagCollector = KleinbaerPhotoFactory.getInstance().createPhotoTagCollector();
      }
+
+     public Photo getPhotoFromId(PhotoId id){
+          if(id == null){
+               return null;
+          }
+
+          Photo result = doGetPhotoFromId(id);
+          if(result == null){
+               result = KleinbaerPhotoFactory.getInstance().loadPhoto(id);
+               if(result != null){
+                    doAddPhoto(result);
+               }
+          }
+
+          return result;
+     }
+
 }

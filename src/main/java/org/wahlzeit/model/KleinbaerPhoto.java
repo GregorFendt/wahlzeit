@@ -8,9 +8,16 @@
  */
 package org.wahlzeit.model;
 
+
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Subclass;
+
 /**
  * KleinbaerPhoto represents a Photo of a Kleinbaer {@link Kleinbaer}
  */
+@Entity
+@Subclass
+
 public class KleinbaerPhoto extends Photo {
 
     /**
