@@ -2,7 +2,6 @@ package org.wahlzeit.model;
 
 import org.junit.runner.RunWith;
 import  org.junit.runners.Suite;
-import org.wahlzeit.model.persistence.AbstractAdapterTest;
 import org.wahlzeit.model.persistence.DatastoreAdapterTest;
 
 @RunWith(Suite.class)
@@ -11,7 +10,7 @@ import org.wahlzeit.model.persistence.DatastoreAdapterTest;
         //AbstractAdapterTest.class,
         DatastoreAdapterTest.class,
         AccessRightsTest.class,
-        CoordinateTest.class,
+        CartesianCoordinateTest.class,
         FlagReasonTest.class,
         GenderTest.class,
         GuestTest.class,

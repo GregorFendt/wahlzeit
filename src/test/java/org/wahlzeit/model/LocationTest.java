@@ -20,7 +20,7 @@ public class LocationTest {
     @Test
     public void testSetAndGet(){
         Location loc = new Location();
-        Coordinate coord = new Coordinate(1d, 1d, 1d);
+        CartesianCoordinate coord = new CartesianCoordinate(1d, 1d, 1d);
         loc.setCoordinate(coord);
         assertEquals(loc.getCoordinate(), coord);
     }

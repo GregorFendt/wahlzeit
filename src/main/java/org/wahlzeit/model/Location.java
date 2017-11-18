@@ -9,30 +9,30 @@
 package org.wahlzeit.model;
 
 /**
- * Location class which is bound to a specific Coordinate
+ * Location class which is bound to a specific CartesianCoordinate
  */
 public class Location {
 
     /**
      * Specific coordinate of the location
      */
-    private Coordinate coordinate;
+    private CartesianCoordinate coordinate;
 
     /**
      * @methodtype get
-     * Getter method for the Coordinate-class of Location
-     * @return Coordinate class or Null if not set
+     * Getter method for the CartesianCoordinate-class of Location
+     * @return CartesianCoordinate class or Null if not set
      */
-    public Coordinate getCoordinate(){
+    public CartesianCoordinate getCoordinate(){
         return this.coordinate;
     }
 
     /**
      * @methodtype set
-     * Setter method for the Coordinate-class of Location
-     * @param coord Coordinate to be set for Location
+     * Setter method for the CartesianCoordinate-class of Location
+     * @param coord CartesianCoordinate to be set for Location
      */
-    public void setCoordinate(Coordinate coord){
+    public void setCoordinate(CartesianCoordinate coord){
         coordinate = coord;
     }
 

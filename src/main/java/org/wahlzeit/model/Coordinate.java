@@ -1,127 +1,56 @@
 /*
  *   Classname: Coordinate
  *
- *   Version: 1.1 [update 2nd ADAP-reviews]
+ *   Version: 1.0 [6th ADAP-Homework]
  *
- *   Date: 06.11.2017
+ *   Date: 19.11.2017
  *
  */
 package org.wahlzeit.model;
 
-
 /**
- * A coordinate to represent a location(x,y,z) in a cartesian coordinate system. x, y, z are specified in double precision
+ * A coordinate interface to represent different kinds of coordinates
  */
-public class Coordinate {
+public interface Coordinate {
 
-    /**
-     * Limit in which 2 doubles are still considered equal
-     */
-    private static final double DELTA = 1E-6;
+   /**
+    * @methodtype conversion
+    * @return the cartesian representation of the coordinate
+    */
+   public CartesianCoordinate asCartesianCoordinate();
 
-    /**
-     * The X value of this coordinate
-     */
-    private double x;
-    /**
-     * The Y value of this coordinate
-     */
-    private double y;
-    /**
-     * The Z value of this coordinate
-     */
-    private double z;
+   /**
+    * @methodtype comparison
+    * @param coordinate Coordinate you want to compare with
+    * @return the CartesianDistance between 2 Coordinates
+    */
+   public double getCartesianDistance(Coordinate coordinate);
 
-    /**
-     * @methodype initialization
-     * Constructs and initializes a coordinate with a specified (x,y,z) location
-     */
-    public Coordinate(double x, double y, double z){
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
+   /**
+    * @methodtype conversion
+    * @return the spheric representation of the coordinate
+    */
+   public SphericCoordinate asSphericCoordinate();
 
-    /**
-     * @methodtype get
-     * @return corresponding x coordinate
-     */
-    public double getX(){
-        return this.x;
-    }
+   /**
+    * @methodtype comparison
+    * @param coordinate Coordinate you want to compare with
+    * @return the SphericDistance between 2 Coordinates
+    */
+   public double getSphericDistance(Coordinate coordinate);
 
-    /**
-     * @methodtype get
-     * @return corresponding y coordinate
-     */
-    public double getY(){
-        return  this.y;
-    }
+   /**
+    * @methodtype comparison
+    * @param coordinate Coordinate you want to compare with
+    * @return the Distance between to 2 Coordinates
+    */
+   public double getDistance(Coordinate coordinate);
 
-    /**
-     * @methodtype get
-     * @return corresponding z coordinate
-     */
-    public double getZ(){
-        return this.z;
-    }
-
-    /**
-     * @methodtype comparison
-     * Calculates direct distance between this and the given Coordinate in double precision
-     * @param coord reference Coordinate with which the direct distance is calculated of
-     * @return the direct distance between the 2 Coordinate-classes in double precision
-     */
-    public double getDistance(Coordinate coord){
-        return Math.sqrt( Math.pow(this.x - coord.getX(), 2) + Math.pow(this.y - coord.getY(), 2) + Math.pow(this.z - coord.getZ(), 2));
-    }
-
-
-    /**
-     * @methodtype comparison
-     * Checks if the 3 coordinates(x,y,z) are exactly! the same for both Coordinate classes
-     * @param coord reference Coordinate with which to compare
-     * @return true if both Coordinate-classes are the same in all 3 coordinates, false otherwise
-     */
-    public boolean isEqual(Coordinate coord){
-
-        if(coord == null) {
-            return false;
-        }
-
-        if(isDoubleEqual(this.x, coord.getX()) && isDoubleEqual(this.y, coord.getY()) && isDoubleEqual(this.z, coord.getZ())){
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean equals(Object obj){
-        if(obj == null && !(obj instanceof Coordinate)){
-            return false;
-        }
-        return this.isEqual((Coordinate) obj);
-    }
-
-    /**
-     * @methodtype comparison
-     * Helpermethod to check if 2 doubles are equal
-     * @param x double
-     * @param y double
-     * @return true if both doubles are considered equal
-     */
-    public boolean isDoubleEqual(double x, double y){
-        return Math.abs(x - y) <= DELTA;
-    }
-
-    @Override
-    public int hashCode(){
-        int hash = 0;
-        hash += Math.floor(x * 1E6) / 1E6;
-        hash += Math.floor(y * 1E6) / 1E6;
-        hash += Math.floor(z * 1E6) / 1E6;
-       return hash;
-    }
-
+   /**
+    * @methodtype comparison
+    * Checks if 2 Coordinates are considered equal
+    * @param coordinate the Coordinate to compare with
+    * @return true if the Coordinates are considered equal, false otherwise
+    */
+   public boolean isEqual(Coordinate coordinate);
 }
