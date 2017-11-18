@@ -16,7 +16,7 @@ public class Kleinbaer {
     /**
      * the scientific Declaration of Kleinbaer
      */
-    private final String scientificFamilyName = "Procyonidae";
+    private final String SCIENTIFIC_NAME = "Procyonidae";
 
     /**
      * the genus of a Kleinbaer
@@ -65,8 +65,8 @@ public class Kleinbaer {
      * @methodtyp get
      * @return the scientific family declaration for Kleinbaren
      */
-    public String getScientificFamilyName() {
-        return scientificFamilyName;
+    public String getSCIENTIFIC_NAME() {
+        return SCIENTIFIC_NAME;
     }
 
     /**

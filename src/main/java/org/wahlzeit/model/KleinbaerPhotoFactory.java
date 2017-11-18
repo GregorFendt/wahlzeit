@@ -26,8 +26,8 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
     /***
      *
      */
-    protected KleinbaerPhotoFactory(){
-       //do nothing
+    public KleinbaerPhotoFactory(){
+        super();
     }
 
     /**
@@ -78,6 +78,5 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
     public KleinbaerPhoto createPhoto(PhotoId id){
         return new KleinbaerPhoto(id);
     }
-
 
 }

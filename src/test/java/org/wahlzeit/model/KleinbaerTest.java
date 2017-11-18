@@ -24,7 +24,7 @@ public class KleinbaerTest {
 
     @Test
     public void testGetters(){
-        assertEquals(testWickelbaer.getScientificFamilyName(), "Procyonidae");
+        assertEquals(testWickelbaer.getSCIENTIFIC_NAME(), "Procyonidae");
         assertEquals(testKatzenfrett.getGenus(), Kleinbaer.kleinbaerengenus.KATZENFRETT);
         assertEquals(testMakibaer.getNumberOfTeeth(), 40);
         assertEquals(testWickelbaer.getNumberOfTeeth(), 36);
