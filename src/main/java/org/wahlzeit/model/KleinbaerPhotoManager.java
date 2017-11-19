@@ -24,9 +24,9 @@ public class KleinbaerPhotoManager extends PhotoManager {
       */
      protected KleinbaerPhotoManager() {
          super();
+         photoTagCollector = KleinbaerPhotoFactory.getInstance().createPhotoTagCollector();
      }
 
-     @Override
      public Photo getPhotoFromId(PhotoId id){
           if(id == null){
                return null;
