@@ -26,8 +26,8 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
     /***
      *
      */
-    public KleinbaerPhotoFactory(){
-        super();
+    protected KleinbaerPhotoFactory(){
+        //do nothing
     }
 
     /**

@@ -19,12 +19,11 @@ public class KleinbaerPhotoManager extends PhotoManager {
 
      protected static final KleinbaerPhotoManager instance = new KleinbaerPhotoManager();
 
-     private static final Logger log = Logger.getLogger(KleinbaerPhotoManager.class.getName());
      /**
       * @methodtype initialization
       */
      protected KleinbaerPhotoManager() {
-          photoTagCollector = KleinbaerPhotoFactory.getInstance().createPhotoTagCollector();
+         super();
      }
 
      @Override
