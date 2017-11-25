@@ -34,7 +34,7 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
      * Hidden singleton instance; needs to be initialized from the outside.
      */
     public static void initialize(){
-        getInstance();
+        KleinbaerPhotoFactory.getInstance();
     }
 
     /**
@@ -54,7 +54,7 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
      */
     protected static synchronized void setInstance(KleinbaerPhotoFactory photoFactory){
         if(instance != null){
-            throw new IllegalStateException("attempt to initalize KleinbaerPhotoFacotry twice");
+            throw new IllegalStateException("attempt to initalize PhotoFacotry twice");
         }
 
         instance = photoFactory;
@@ -64,7 +64,6 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
      * @methodtype factory
      * @return creates a KleinbaerPhoto
      */
-    @Override
     public KleinbaerPhoto createPhoto(){
         return new KleinbaerPhoto();
     }
@@ -74,9 +73,16 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
      * @param id to be used for the KleinbaerPhoto
      * @return a newly created KleinbaerPhoto
      */
-    @Override
     public KleinbaerPhoto createPhoto(PhotoId id){
         return new KleinbaerPhoto(id);
     }
 
+    public KleinbaerPhoto createPhoto(Kleinbaer.kleinbaerengenus genus){
+        return new KleinbaerPhoto(new Kleinbaer(genus));
+    }
+
+
+    public KleinbaerPhoto loadPhoto(PhotoId id){
+        return null;
+    }
 }

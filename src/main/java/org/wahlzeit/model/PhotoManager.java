@@ -72,28 +72,28 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 *
 	 */
-	public static final PhotoManager getInstance() {
-		return instance;
+	public static PhotoManager getInstance() {
+		return PhotoManager.instance;
 	}
 
 	/**
 	 *
 	 */
-	public final boolean hasPhoto(String id) {
+	public  boolean hasPhoto(String id) {
 		return hasPhoto(PhotoId.getIdFromString(id));
 	}
 
 	/**
 	 *
 	 */
-	public final boolean hasPhoto(PhotoId id) {
+	public  boolean hasPhoto(PhotoId id) {
 		return getPhoto(id) != null;
 	}
 
 	/**
 	 *
 	 */
-	public final Photo getPhoto(PhotoId id) {
+	public Photo getPhoto(PhotoId id) {
 		return instance.getPhotoFromId(id);
 	}
 
@@ -136,7 +136,7 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 * @methodtype get
 	 */
-	public final Photo getPhoto(String id) {
+	public Photo getPhoto(String id) {
 		return getPhoto(PhotoId.getIdFromString(id));
 	}
 

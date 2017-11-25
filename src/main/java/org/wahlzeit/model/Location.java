@@ -16,14 +16,14 @@ public class Location {
     /**
      * Specific coordinate of the location
      */
-    private CartesianCoordinate coordinate;
+    private Coordinate coordinate;
 
     /**
      * @methodtype get
      * Getter method for the CartesianCoordinate-class of Location
      * @return CartesianCoordinate class or Null if not set
      */
-    public CartesianCoordinate getCoordinate(){
+    public Coordinate getCoordinate(){
         return this.coordinate;
     }
 
@@ -32,7 +32,7 @@ public class Location {
      * Setter method for the CartesianCoordinate-class of Location
      * @param coord CartesianCoordinate to be set for Location
      */
-    public void setCoordinate(CartesianCoordinate coord){
+    public void setCoordinate(Coordinate coord){
         coordinate = coord;
     }
 

@@ -21,7 +21,7 @@ public interface Coordinate {
 
    /**
     * @methodtype comparison
-    * @param coordinate Coordinate you want to compare with
+    * @param coordinate CartesianCoordinate you want to compare with
     * @return the CartesianDistance between 2 Coordinates
     */
    public double getCartesianDistance(Coordinate coordinate);
@@ -34,14 +34,14 @@ public interface Coordinate {
 
    /**
     * @methodtype comparison
-    * @param coordinate Coordinate you want to compare with
+    * @param coordinate CartesianCoordinate you want to compare with
     * @return the SphericDistance between 2 Coordinates
     */
    public double getSphericDistance(Coordinate coordinate);
 
    /**
     * @methodtype comparison
-    * @param coordinate Coordinate you want to compare with
+    * @param coordinate CartesianCoordinate you want to compare with
     * @return the Distance between to 2 Coordinates
     */
    public double getDistance(Coordinate coordinate);
@@ -49,7 +49,7 @@ public interface Coordinate {
    /**
     * @methodtype comparison
     * Checks if 2 Coordinates are considered equal
-    * @param coordinate the Coordinate to compare with
+    * @param coordinate the CartesianCoordinate to compare with
     * @return true if the Coordinates are considered equal, false otherwise
     */
    public boolean isEqual(Coordinate coordinate);

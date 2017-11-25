@@ -10,7 +10,7 @@ package org.wahlzeit.model;
 
 
 /**
- * Implementation of the Coordinate Interface as a geographic coordinate system
+ * Implementation of the CartesianCoordinate Interface as a geographic coordinate system
  */
 public class SphericCoordinate implements Coordinate {
 
@@ -153,10 +153,10 @@ public class SphericCoordinate implements Coordinate {
 
     @Override
     public boolean equals(Object obj){
-        if(obj == null && !(obj instanceof Coordinate)){
+        if(obj == null && !(obj instanceof CartesianCoordinate)){
             return false;
         }
-        return this.isEqual((Coordinate) obj);
+        return this.isEqual((CartesianCoordinate) obj);
     }
 
     /**
