@@ -1,9 +1,9 @@
 /*
  *   Classname: SphericCoordinate
  *
- *   Version: 1.0 [created while doing 6th ADAP-homework]
+ *   Version: 1.1 [created while doing 7th ADAP-homework]
  *
- *   Date: 18.11.2017
+ *   Date: 25.11.2017
  *
  */
 package org.wahlzeit.model;
@@ -12,7 +12,7 @@ package org.wahlzeit.model;
 /**
  * Implementation of the CartesianCoordinate Interface as a geographic coordinate system
  */
-public class SphericCoordinate implements Coordinate {
+public class SphericCoordinate extends AbstractCoordinate {
 
     /**
      * Limit in which 2 doubles are still considered equal
@@ -69,14 +69,6 @@ public class SphericCoordinate implements Coordinate {
         return RADIUS;
     }
 
-    /**
-     * @methodtype get
-     * @return CartesianCoordinate representation
-     */
-    public CartesianCoordinate getCartesianCoord(){
-        return cartesianCoord;
-    }
-
     @Override
     public CartesianCoordinate asCartesianCoordinate() {
         if(cartesianCoord != null){
@@ -101,23 +93,13 @@ public class SphericCoordinate implements Coordinate {
     }
 
     @Override
-    public double getCartesianDistance(Coordinate coordinate) {
-
-        CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
-        double dist = cartesianCoordinate.getCartesianDistance(this);
-
-        return dist;
-    }
-
-    @Override
     public SphericCoordinate asSphericCoordinate() {
         return this;
     }
 
-    @Override
-    public double getSphericDistance(Coordinate coordinate) {
+    public double concreteGetDistance(Coordinate coord) {
 
-        SphericCoordinate sphericCoord = coordinate.asSphericCoordinate();
+        SphericCoordinate sphericCoord = (SphericCoordinate) coord;
 
         double phi1 = Math.toRadians(latitude);
         double phi2 = Math.toRadians(sphericCoord.getLatitude());
@@ -132,31 +114,12 @@ public class SphericCoordinate implements Coordinate {
         return RADIUS * c;
     }
 
-    @Override
-    public double getDistance(Coordinate coord) {
-        return getSphericDistance(coord);
-    }
-
-    @Override
-    public boolean isEqual(Coordinate coord) {
-        if(coord == null){
-            return false;
-        }
-
+    public boolean concreteIsEqual(Coordinate coord) {
         SphericCoordinate sphericCoordinate = coord.asSphericCoordinate();
         if(isDoubleEqual(this.longitude, sphericCoordinate.longitude) && isDoubleEqual(this.latitude, sphericCoordinate.latitude)){
             return true;
         }
-
         return false;
-    }
-
-    @Override
-    public boolean equals(Object obj){
-        if(obj == null && !(obj instanceof CartesianCoordinate)){
-            return false;
-        }
-        return this.isEqual((CartesianCoordinate) obj);
     }
 
     /**

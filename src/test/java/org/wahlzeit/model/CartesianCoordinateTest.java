@@ -69,7 +69,7 @@ public class CartesianCoordinateTest {
         double dist2to3 = coord2.getCartesianDistance(coord3);
         double dist3to2 = coord3.getCartesianDistance(coord2);
 
-        assertEquals(dist1to2, 50.3293, DELTA);
+        assertEquals(dist1to2, 50.3293155, DELTA);
         assertEquals(dist1to1, 0.0, DELTA);
         assertEquals(dist2to3, dist3to2, DELTA);
     }

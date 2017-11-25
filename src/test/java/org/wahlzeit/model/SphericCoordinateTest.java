@@ -44,7 +44,6 @@ public class SphericCoordinateTest {
     public void getterMethodTest(){
         assertEquals(sphericCoordinate1.getLatitude(), sphericCoordinate1.getLatitude());
         assertEquals(sphericCoordinate2.getLongitude(), -180.0);
-        assertEquals(sphericCoordinate3.getCartesianCoord(), sphericCoordinate3.getCartesianCoord());
         assertEquals(sphericCoordinate2.getLatitude(), sphericCoordinate2.getLatitude());
     }
 

@@ -1,9 +1,9 @@
 /*
  *   Classname: CartesianCoordinate
  *
- *   Version: 1.2 [6th ADAP-Homework]
+ *   Version: 1.3 [7th ADAP-Homework]
  *
- *   Date: 19.11.2017
+ *   Date: 25.11.2017
  *
  */
 package org.wahlzeit.model;
@@ -12,7 +12,7 @@ package org.wahlzeit.model;
 /**
  * A cartesian coordinate to represent a location(x,y,z) in a cartesian coordinate system. x, y, z are specified in double precision
  */
-public class CartesianCoordinate implements Coordinate {
+public class CartesianCoordinate extends AbstractCoordinate {
 
     /**
      * Limit in which 2 doubles are still considered equal
@@ -71,23 +71,9 @@ public class CartesianCoordinate implements Coordinate {
         return this.z;
     }
 
-    /**
-     * @methodtype get
-     * @return SphericCoordinate representation
-     */
-    public SphericCoordinate getSphericCoord(){
-        return sphericCoord;
-    }
-
     @Override
     public CartesianCoordinate asCartesianCoordinate() {
         return this;
-    }
-
-    @Override
-    public double getCartesianDistance(Coordinate coordinate){
-        CartesianCoordinate cartesianCoord = coordinate.asCartesianCoordinate();
-        return Math.sqrt( Math.pow(this.x - cartesianCoord.getX(), 2) + Math.pow(this.y - cartesianCoord.getY(), 2) + Math.pow(this.z - cartesianCoord.getZ(), 2));
     }
 
     @Override
@@ -98,15 +84,6 @@ public class CartesianCoordinate implements Coordinate {
 
         initializeSphericCoordinate();
         return sphericCoord;
-    }
-
-    @Override
-    public double getSphericDistance(Coordinate coordinate) {
-
-        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
-        double dist = sphericCoordinate.getSphericDistance(this);
-
-        return dist;
     }
 
     /**
@@ -130,31 +107,18 @@ public class CartesianCoordinate implements Coordinate {
         sphericCoord = new SphericCoordinate(latitude, longitude);
     }
 
-    @Override
-    public double getDistance(Coordinate coord){
-        return getCartesianDistance(coord);
+    public double concreteGetDistance(Coordinate coordinate){
+        CartesianCoordinate cartesianCoord = (CartesianCoordinate) coordinate;
+        return Math.sqrt( Math.pow(this.x - cartesianCoord.getX(), 2) + Math.pow(this.y - cartesianCoord.getY(), 2) + Math.pow(this.z - cartesianCoord.getZ(), 2));
     }
 
-    @Override
-    public boolean isEqual(Coordinate coord){
-        if(coord == null) {
-            return false;
-        }
 
+    public boolean concreteIsEqual(Coordinate coord){
         CartesianCoordinate cartesianCoordinate = coord.asCartesianCoordinate();
         if(isDoubleEqual(this.x, cartesianCoordinate.getX()) && isDoubleEqual(this.y, cartesianCoordinate.getY()) && isDoubleEqual(this.z, cartesianCoordinate.getZ())){
             return true;
         }
-
         return false;
-    }
-
-    @Override
-    public boolean equals(Object obj){
-        if(obj == null && !(obj instanceof CartesianCoordinate)){
-            return false;
-        }
-        return this.isEqual((CartesianCoordinate) obj);
     }
 
     /**
