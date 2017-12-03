@@ -1,9 +1,9 @@
 /*
  *   Classname: CartesianCoordinate
  *
- *   Version: 1.3 [7th ADAP-Homework]
+ *   Version: 1.4 [8th ADAP-Homework]
  *
- *   Date: 25.11.2017
+ *   Date: 03.12.2017
  *
  */
 package org.wahlzeit.model;
@@ -13,11 +13,6 @@ package org.wahlzeit.model;
  * A cartesian coordinate to represent a location(x,y,z) in a cartesian coordinate system. x, y, z are specified in double precision
  */
 public class CartesianCoordinate extends AbstractCoordinate {
-
-    /**
-     * Limit in which 2 doubles are still considered equal
-     */
-    private static final double DELTA = 1E-6;
 
     /**
      * The X value of this coordinate
@@ -83,6 +78,8 @@ public class CartesianCoordinate extends AbstractCoordinate {
         }
 
         initializeSphericCoordinate();
+
+        assertObjectNotNull(sphericCoord);
         return sphericCoord;
     }
 
@@ -90,10 +87,8 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * initializes the spheric representation of the cartesian coordinate
      */
     private void initializeSphericCoordinate(){
+        assertSphericCoordIsNull();
 
-        if(sphericCoord != null){
-            throw new IllegalStateException("attempt to initialize SphericCoordinate twice");
-        }
         double latitude = Math.asin( z / SphericCoordinate.getRadius()) * (180 / Math.PI);
         double longitude = 0;
         if( x > 0 ){
@@ -105,15 +100,25 @@ public class CartesianCoordinate extends AbstractCoordinate {
         }
 
         sphericCoord = new SphericCoordinate(latitude, longitude);
+
+        assertObjectNotNull(sphericCoord);
     }
 
-    public double concreteGetDistance(Coordinate coordinate){
+    public double doGetDistance(Coordinate coordinate){
+        assertObjectNotNull(coordinate);
+        assertCoordinateInstanceOfCartesianCoordinate(coordinate);
+
         CartesianCoordinate cartesianCoord = (CartesianCoordinate) coordinate;
-        return Math.sqrt( Math.pow(this.x - cartesianCoord.getX(), 2) + Math.pow(this.y - cartesianCoord.getY(), 2) + Math.pow(this.z - cartesianCoord.getZ(), 2));
+        double distance = Math.sqrt( Math.pow(this.x - cartesianCoord.getX(), 2) + Math.pow(this.y - cartesianCoord.getY(), 2) + Math.pow(this.z - cartesianCoord.getZ(), 2));
+
+        assertDistanceNotNegative(distance);
+        return distance;
     }
 
 
-    public boolean concreteIsEqual(Coordinate coord){
+    public boolean doIsEqual(Coordinate coord){
+        assertObjectNotNull(coord);
+
         CartesianCoordinate cartesianCoordinate = coord.asCartesianCoordinate();
         if(isDoubleEqual(this.x, cartesianCoordinate.getX()) && isDoubleEqual(this.y, cartesianCoordinate.getY()) && isDoubleEqual(this.z, cartesianCoordinate.getZ())){
             return true;
@@ -121,16 +126,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
         return false;
     }
 
-    /**
-     * @methodtype comparison
-     * Helpermethod to check if 2 doubles are equal
-     * @param x double
-     * @param y double
-     * @return true if both doubles are considered equal
-     */
-    public boolean isDoubleEqual(double x, double y){
-        return Math.abs(x - y) <= DELTA;
-    }
 
     @Override
     public int hashCode(){
@@ -141,4 +136,51 @@ public class CartesianCoordinate extends AbstractCoordinate {
        return hash;
     }
 
+    /**
+     * --------------------------------------- Assertions ---------------------------------------------
+     */
+
+    /**
+     * Asserts that the given Object is not Null
+     * @methodtype assertion
+     * @throws IllegalArgumentException if given Object is null
+     */
+    private void assertObjectNotNull(Object object){
+        if(object == null){
+            throw new IllegalStateException("Given Object mustn't be null!");
+        }
+    }
+
+    /**
+     * Asserts that the given Coordinate is instanceOf CartesianCoordinate
+     * @methodtype assertion
+     * @throws IllegalStateException if given Coordinate is not instanceOf CartesianCoordinate
+     */
+    private void assertCoordinateInstanceOfCartesianCoordinate(Coordinate coordinate){
+        if(!(coordinate instanceof CartesianCoordinate)){
+           throw new IllegalStateException("Given Coordinate must be a CartesianCoordinate");
+        }
+    }
+
+    /**
+     * Asserts that sphericCoord is Null
+     * @methodtype assertion
+     * @throws IllegalArgumentException if sphericCoord is not null
+     */
+    private void assertSphericCoordIsNull(){
+        if(sphericCoord != null){
+            throw new IllegalStateException("sphericCoord musn't be initialized twice!");
+        }
+    }
+
+    /**
+     * Asserts that the given double is not negative
+     * @methodtype assertion
+     * @throws IllegalStateException if given distance ist negative
+     */
+    private void assertDistanceNotNegative(double distance){
+        if(distance < 0){
+            throw new IllegalStateException("Calculated distance mustn't be null!");
+        }
+    }
 }
