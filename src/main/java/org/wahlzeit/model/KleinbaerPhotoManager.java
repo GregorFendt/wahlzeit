@@ -23,6 +23,7 @@ import java.util.logging.Logger;
  */
 public class KleinbaerPhotoManager extends PhotoManager {
 
+
      protected static final KleinbaerPhotoManager instance = new KleinbaerPhotoManager();
 
      private static final Logger log = Logger.getLogger(PhotoManager.class.getName());
@@ -76,7 +77,7 @@ public class KleinbaerPhotoManager extends PhotoManager {
 	}
 
 
-     public Photo getPhotoFromId(PhotoId id){
+     public Photo getPhotoFromId(PhotoId id) throws KleinbaerPhotoManagerException{
           if(id == null){
                return null;
           }
@@ -89,6 +90,23 @@ public class KleinbaerPhotoManager extends PhotoManager {
                }
           }
 
+          assertPhotoIsNotNull(result);
           return result;
      }
+
+    /**
+     * ------------------------ Assertions ------------------------
+     */
+
+    /**
+     * Asserts that Photo is not null
+     * @methodtype assertion
+     * @throws KleinbaerPhotoFactoryException if Photo is null
+     */
+    static private void assertPhotoIsNotNull(Photo photo){
+        if(photo != null){
+            throw new KleinbaerPhotoManagerException("Loaded Photo mustn't be null!");
+        }
+    }
+
 }

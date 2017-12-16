@@ -37,7 +37,9 @@ public class KleinbaerPhoto extends Photo {
      * @param kleinbaer which is in the Photo
      */
     public KleinbaerPhoto(Kleinbaer kleinbaer){
-        this();
+        super();
+
+       assertKleinbaerNotNull(kleinbaer);
         this.kleinbaer = kleinbaer;
     }
 
@@ -53,6 +55,7 @@ public class KleinbaerPhoto extends Photo {
      */
     public KleinbaerPhoto(Kleinbaer kleinbaer, PhotoId id){
         super(id);
+        assertKleinbaerNotNull(kleinbaer);
         this.kleinbaer = kleinbaer;
     }
 
@@ -61,6 +64,8 @@ public class KleinbaerPhoto extends Photo {
      * @return the Kleinbaer.class which is in the photo
      */
     public Kleinbaer getKleinbaer(){
+        assertKleinbaerNotNull(kleinbaer);
+
         return kleinbaer;
     }
 
@@ -69,8 +74,24 @@ public class KleinbaerPhoto extends Photo {
      * @param kleinbaer is newly set for the photo
      */
     public void setKleinbaer(Kleinbaer kleinbaer){
+        assertKleinbaerNotNull(kleinbaer);
+
         this.kleinbaer = kleinbaer;
     }
 
+    /**
+     * ------------------------ Assertions ------------------------
+     */
+
+    /**
+     * Asserts that the given Kleinbaer-class is not null
+     * @methodtype assertion
+     * @throws KleinbaerPhotoException if given Kleinbaer-class is null
+     */
+    private void assertKleinbaerNotNull(Kleinbaer kleinbaer){
+        if(kleinbaer == null){
+            throw new KleinbaerPhotoException("Kleinbaer-class mustn't be null");
+        }
+    }
 
 }

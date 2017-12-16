@@ -58,6 +58,8 @@ public class Kleinbaer {
      * @param genus for which the Kleinbaerfacts are set
      */
     public Kleinbaer(kleinbaerengenus genus){
+        assertGenusNotNull(genus);
+
         updateKleinbaerfacts(genus);
     }
 
@@ -74,6 +76,8 @@ public class Kleinbaer {
      * @return genus of the Kleinbaer
      */
     public kleinbaerengenus getGenus(){
+        assertGenusNotNull(genus);
+
         return genus;
     }
 
@@ -82,6 +86,8 @@ public class Kleinbaer {
      * @param newGenus Kleinbaer-Genus which is to be set
      */
     public void setGenus(kleinbaerengenus newGenus){
+        assertGenusNotNull(genus);
+
         updateKleinbaerfacts(newGenus);
         genus = newGenus;
     }
@@ -99,6 +105,8 @@ public class Kleinbaer {
      * @param genus for which the typical number of teeth get set
      */
     private void setNumberOfTeeth(kleinbaerengenus genus){
+        assertGenusNotNull(genus);
+
         if(genus == kleinbaerengenus.WICKELBAER){
             this.numberOfTeeth = 36;
             return;
@@ -147,6 +155,8 @@ public class Kleinbaer {
      * @param genus sets the maxWeight for this genus in gramms
      */
     private void setMaxWeight(kleinbaerengenus genus){
+        assertGenusNotNull(genus);
+
         switch (genus){
             case MAKIBAER:
                 this.maxWeight = 1_500;
@@ -176,6 +186,8 @@ public class Kleinbaer {
      * @param genus sets the max tail length for this genus in cm
      */
     private void setMaxTailLength(kleinbaerengenus genus){
+        assertGenusNotNull(genus);
+
         switch (genus){
             case MAKIBAER:
                 this.maxTailLength = 48;
@@ -205,6 +217,8 @@ public class Kleinbaer {
      * @param genus sets the max length(without the tail) for this genus in cm
      */
     private void setMaxSnoutVentLength(kleinbaerengenus genus){
+        assertGenusNotNull(genus);
+
         switch (genus){
             case MAKIBAER:
                 this.maxSnoutVentLength = 48;
@@ -235,11 +249,26 @@ public class Kleinbaer {
      * @param newGenus the genus for which the global variables are updated
      */
     private void updateKleinbaerfacts(kleinbaerengenus newGenus){
+        assertGenusNotNull(newGenus);
+
         setNumberOfTeeth(newGenus);
         setMaxWeight(newGenus);
         setMaxSnoutVentLength(newGenus);
         setMaxTailLength(newGenus);
     }
+    /**
+     * ------------------------ Assertions ------------------------
+     */
 
+    /**
+     * Asserts that the given genus is not null
+     * @methodtype assertion
+     * @throws KleinbaerException if given kleinbaerengenus is null
+     */
+    private void assertGenusNotNull(kleinbaerengenus genus){
+        if(genus == null){
+            throw new KleinbaerException("kleinbaerengenus mustn't be null");
+        }
+    }
 
 }

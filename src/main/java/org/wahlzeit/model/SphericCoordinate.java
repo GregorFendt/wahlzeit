@@ -65,8 +65,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodtype get
      * @return RADIUS of the earth
      */
-    public int getRadius(){
-        assertClassInvariants();
+    public static int getRadius(){
         return RADIUS;
     }
 
@@ -157,7 +156,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodtype assertion
      * @throws IllegalStateException if Latitude or Longitude are set to an invalid value
      */
-     void assertClassInvariants(){
+     private void assertClassInvariants(){
         if(Math.abs(this.latitude) > 90 || Math.abs(this.longitude) > 180){
             throw(new IllegalStateException("Latitude or Longitude of coordinate are set to an invalid value!"));
         }

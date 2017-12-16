@@ -53,9 +53,7 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
      * Method to set the singleton instance of PhotoFactory
      */
     protected static synchronized void setInstance(KleinbaerPhotoFactory photoFactory){
-        if(instance != null){
-            throw new IllegalStateException("attempt to initalize PhotoFacotry twice");
-        }
+        assertInstanceIsNull();
 
         instance = photoFactory;
     }
@@ -65,6 +63,7 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
      * @return creates a KleinbaerPhoto
      */
     public KleinbaerPhoto createPhoto(){
+        KleinbaerPhoto photo = null;
         return new KleinbaerPhoto();
     }
 
@@ -78,11 +77,28 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
     }
 
     public KleinbaerPhoto createPhoto(Kleinbaer.kleinbaerengenus genus){
-        return new KleinbaerPhoto(new Kleinbaer(genus));
+        KleinbaerPhoto photo =  new KleinbaerPhoto(new Kleinbaer(genus));
+        return photo;
     }
 
 
     public KleinbaerPhoto loadPhoto(PhotoId id){
         return null;
     }
+
+    /**
+     * ------------------------ Assertions ------------------------
+     */
+
+    /**
+     * Asserts that the KleinbaerPhotoFactory instance is null
+     * @methodtype assertion
+     * @throws KleinbaerPhotoFactoryException if KleinbaerPhotoFactory instance is null
+     */
+    static private void assertInstanceIsNull(){
+        if(instance != null){
+            throw new KleinbaerPhotoException("KleinbaerPhotoFactory instance mustn't be initialized twice!");
+        }
+    }
+
 }
