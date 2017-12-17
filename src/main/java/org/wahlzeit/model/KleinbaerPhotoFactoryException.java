@@ -3,7 +3,6 @@ package org.wahlzeit.model;
 public class KleinbaerPhotoFactoryException extends RuntimeException {
 
     public String errorMsg;
-    public RuntimeException propagatedException;
 
     public KleinbaerPhotoFactoryException(){
         super();
@@ -14,9 +13,4 @@ public class KleinbaerPhotoFactoryException extends RuntimeException {
         this.errorMsg = msg;
     }
 
-    public KleinbaerPhotoFactoryException(String msg, RuntimeException exception){
-        super(msg);
-        this.errorMsg = msg;
-        this.propagatedException = exception;
-    }
 }

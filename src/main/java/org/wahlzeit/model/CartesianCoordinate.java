@@ -1,9 +1,9 @@
 /*
  *   Classname: CartesianCoordinate
  *
- *   Version: 1.4 [8th ADAP-Homework]
+ *   Version: 1.5 [10th ADAP-Homework]
  *
- *   Date: 03.12.2017
+ *   Date: 17.12.2017
  *
  */
 package org.wahlzeit.model;
@@ -17,15 +17,15 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      * The X value of this coordinate
      */
-    private double x;
+    private final double x;
     /**
      * The Y value of this coordinate
      */
-    private double y;
+    private final double y;
     /**
      * The Z value of this coordinate
      */
-    private double z;
+    private final double z;
 
     /**
      * lazy initialization of the CartesianCoordinate as SphericCoordinate
@@ -143,44 +143,44 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      * Asserts that the given Object is not Null
      * @methodtype assertion
-     * @throws IllegalArgumentException if given Object is null
+     * @throws CoordinateException if given Object is null
      */
     private void assertObjectNotNull(Object object){
         if(object == null){
-            throw new IllegalStateException("Given Object mustn't be null!");
+            throw new CoordinateException("Given Object mustn't be null!");
         }
     }
 
     /**
      * Asserts that the given Coordinate is instanceOf CartesianCoordinate
      * @methodtype assertion
-     * @throws IllegalStateException if given Coordinate is not instanceOf CartesianCoordinate
+     * @throws CoordinateException if given Coordinate is not instanceOf CartesianCoordinate
      */
     private void assertCoordinateInstanceOfCartesianCoordinate(Coordinate coordinate){
         if(!(coordinate instanceof CartesianCoordinate)){
-           throw new IllegalStateException("Given Coordinate must be a CartesianCoordinate");
+           throw new CoordinateException("Given Coordinate must be a CartesianCoordinate");
         }
     }
 
     /**
      * Asserts that sphericCoord is Null
      * @methodtype assertion
-     * @throws IllegalArgumentException if sphericCoord is not null
+     * @throws CoordinateException if sphericCoord is not null
      */
     private void assertSphericCoordIsNull(){
         if(sphericCoord != null){
-            throw new IllegalStateException("sphericCoord musn't be initialized twice!");
+            throw new CoordinateException("sphericCoord musn't be initialized twice!");
         }
     }
 
     /**
      * Asserts that the given double is not negative
      * @methodtype assertion
-     * @throws IllegalStateException if given distance ist negative
+     * @throws CoordinateException if given distance ist negative
      */
     private void assertDistanceNotNegative(double distance){
         if(distance < 0){
-            throw new IllegalStateException("Calculated distance mustn't be null!");
+            throw new CoordinateException("Calculated distance mustn't be null!");
         }
     }
 }

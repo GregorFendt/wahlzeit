@@ -1,12 +1,15 @@
 /*
  *   Classname: AbstractCoordinate
  *
- *   Version: 1.1 [8th ADAP-Homework]
+ *   Version: 1.2 [10th ADAP-Homework]
  *
- *   Date: 03.12.2017
+ *   Date: 17.12.2017
  *
  */
 package org.wahlzeit.model;
+
+
+import java.util.HashMap;
 
 /**
  * An Abstract class to represent different Coordinate classes.
@@ -17,6 +20,33 @@ public abstract class AbstractCoordinate implements Coordinate {
      * Limit in which 2 doubles are still considered equal
      */
     private static final double DELTA = 1E-6;
+
+    /**
+     * HashSet of all Coordinates to guarantee uniqueness
+     */
+    public static final HashMap<Integer, CartesianCoordinate> allCoordinates = new HashMap<>();
+
+    /**
+     * generates the hashkey using the attributes from CartesianCoordinate for the HashMap "allCoordinates"
+     */
+    public static final int generateHashkeyCartesian(double x, double y, double z){
+        int hash = 0;
+        hash += Math.floor(x * 1E6) / 1E6;
+        hash += Math.floor(y * 1E6) / 1E6;
+        hash += Math.floor(z * 1E6) / 1E6;
+       return hash;
+    }
+
+    /**
+     * generates the hashkey using the attributes from SphericCoordinate for the HashMap "allCoordinates"
+     */
+    public static final int generateHashKeySpheric(double latitude, double longitude, int radius){
+
+        double x = radius * Math.cos(latitude) * Math.cos(longitude);
+        double y = radius * Math.cos(latitude) * Math.sin(longitude);
+        double z = radius * Math.sin(latitude);
+        return generateHashkeyCartesian(x, y, z);
+    }
 
     /**
      * @methodtype comparison
@@ -119,11 +149,11 @@ public abstract class AbstractCoordinate implements Coordinate {
     /**
      * Asserts that the given double is not negative
      * @methodtype assertion
-     * @throws IllegalStateException if given distance ist negative
+     * @throws CoordinateException if given distance ist negative
      */
     private void assertDistanceNotNegative(double distance){
         if(distance < 0){
-            throw new IllegalStateException("Calculated distance mustn't be null!");
+            throw new CoordinateException("Calculated distance mustn't be null!");
         }
     }
 

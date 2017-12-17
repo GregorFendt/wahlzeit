@@ -1,9 +1,9 @@
 /*
  *   Classname: SphericCoordinate
  *
- *   Version: 1.1 [created while doing 7th ADAP-homework]
+ *   Version: 1.2 [10th ADAP-homework]
  *
- *   Date: 25.11.2017
+ *   Date: 17.12.2017
  *
  */
 package org.wahlzeit.model;
@@ -17,11 +17,11 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      * north-south position of a point on the Earth's surface from -90 Degrees to 90 Degrees
      */
-    private double latitude;
+    private final double latitude;
     /**
      * east-west position of a point on the Earth's surface from -180 Degrees to 180 Degrees
      */
-    private double longitude;
+    private final double longitude;
 
     private CartesianCoordinate cartesianCoord;
     /**
@@ -33,7 +33,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodtype initialization
      * Constructs and initializes a spheric coordinate
      */
-    public SphericCoordinate(double latitude, double longitude){
+    public SphericCoordinate(double latitude, double longitude) throws IllegalArgumentException{
         assertLatitude(latitude);
         assertLongitude(longitude);
 
@@ -152,14 +152,11 @@ public class SphericCoordinate extends AbstractCoordinate {
      * --------------------------------------- Assertions ---------------------------------------------
      */
     /**
-     * Asserts that Latitude or Longitude never reach invalid values
+     * Does nothing(Here once laid the great latitude-/longitude check which became obsolete)
      * @methodtype assertion
-     * @throws IllegalStateException if Latitude or Longitude are set to an invalid value
      */
      private void assertClassInvariants(){
-        if(Math.abs(this.latitude) > 90 || Math.abs(this.longitude) > 180){
-            throw(new IllegalStateException("Latitude or Longitude of coordinate are set to an invalid value!"));
-        }
+         //nothing
     }
 
     /**
@@ -167,7 +164,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodtype assertion
      * @throws IllegalArgumentException if latitude is a invalid value
      */
-    private void assertLatitude(double latitude){
+    private void assertLatitude(double latitude) throws IllegalArgumentException{
         if(Math.abs(latitude) > 90){
             throw(new IllegalArgumentException("latitude mustn't be below -90 or above 90 Degrees"));
         }
@@ -178,7 +175,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodtype assertion
      * @throws IllegalArgumentException if longitude is a invalid value
      */
-    private void assertLongitude(double longitude){
+    private void assertLongitude(double longitude) throws IllegalArgumentException{
         if(Math.abs(longitude) > 180){
             throw(new IllegalArgumentException("latitude mustn't be below -180 or above 180 Degrees"));
         }
@@ -187,44 +184,44 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      * Asserts that the given Object is not Null
      * @methodtype assertion
-     * @throws IllegalArgumentException if given Object is null
+     * @throws CoordinateException if given Object is null
      */
     private void assertObjectNotNull(Object object){
         if(object == null){
-            throw new IllegalStateException("Given Object mustn't be null!");
+            throw new CoordinateException("Given Object mustn't be null!");
         }
     }
 
     /**
      * Asserts that the given Coordinate is instanceOf CartesianCoordinate
      * @methodtype assertion
-     * @throws IllegalStateException if given Coordinate is not instanceOf CartesianCoordinate
+     * @throws CoordinateException if given Coordinate is not instanceOf CartesianCoordinate
      */
     private void assertCoordinateInstanceOfSphericCoordinate(Coordinate coordinate){
         if(!(coordinate instanceof SphericCoordinate)){
-           throw new IllegalStateException("Given Coordinate must be a SphericCoordinate");
+           throw new CoordinateException("Given Coordinate must be a SphericCoordinate");
         }
     }
 
     /**
      * Asserts that cartesianCoord is Null
      * @methodtype assertion
-     * @throws IllegalArgumentException if cartesianCoord is not null
+     * @throws CoordinateException if cartesianCoord is not null
      */
     private void assertCartesianCoordIsNull(){
         if(cartesianCoord != null){
-            throw new IllegalStateException("cartesianCoord musn't be initialized twice!");
+            throw new CoordinateException("cartesianCoord musn't be initialized twice!");
         }
     }
 
     /**
      * Asserts that the given double is not negative
      * @methodtype assertion
-     * @throws IllegalStateException if given distance ist negative
+     * @throws CoordinateException if given distance ist negative
      */
     private void assertDistanceNotNegative(double distance){
         if(distance < 0){
-            throw new IllegalStateException("Calculated distance mustn't be null!");
+            throw new CoordinateException("Calculated distance mustn't be null!");
         }
     }
 }

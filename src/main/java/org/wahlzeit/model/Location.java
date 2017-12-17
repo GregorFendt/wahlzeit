@@ -1,15 +1,15 @@
 /*
  *   Classname: Location
  *
- *   Version: 1.1 [update 2nd ADAP-reviews]
+ *   Version: 1.2 [10th ADAP homework]
  *
- *   Date: 06.11.2017
+ *   Date: 17.12.2017
  *
  */
 package org.wahlzeit.model;
 
 /**
- * Location class which is bound to a specific CartesianCoordinate
+ * Location class which is bound to a specific Coordinate
  */
 public class Location {
 
@@ -20,8 +20,8 @@ public class Location {
 
     /**
      * @methodtype get
-     * Getter method for the CartesianCoordinate-class of Location
-     * @return CartesianCoordinate class or Null if not set
+     * Getter method for the Coordinate-class of Location
+     * @return Coordinate class or Null if not set
      */
     public Coordinate getCoordinate(){
         return this.coordinate;
@@ -29,8 +29,8 @@ public class Location {
 
     /**
      * @methodtype set
-     * Setter method for the CartesianCoordinate-class of Location
-     * @param coord CartesianCoordinate to be set for Location
+     * Setter method for the Coordinate-class of Location
+     * @param coord Coordinate to be set for Location
      */
     public void setCoordinate(Coordinate coord){
         coordinate = coord;
