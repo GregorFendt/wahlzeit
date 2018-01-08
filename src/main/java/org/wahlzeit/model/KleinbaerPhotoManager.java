@@ -1,16 +1,28 @@
 /*
- *   Classname: KleinbaerPhotoManager
+ * Copyright (c) 2006-2009 by Dirk Riehle, http://dirkriehle.com
  *
- *   Version: 1.0 [created while doing 5th ADAP-homework]
+ * This file is part of the Wahlzeit photo rating application.
  *
- *   Date: 11.11.2017
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public
+ * License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
 package org.wahlzeit.model;
 
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
 import org.wahlzeit.services.LogBuilder;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,13 +32,14 @@ import java.util.logging.Logger;
 
 /**
  * KleinbaerPhotoManager manages Kleinbaer photos
+ */
  @PatternInstance(
- patternName = "Singleton"
+ patternName = "Singleton",
  participants = {
  "Singleton"
  }
  )
- */
+
 public class KleinbaerPhotoManager extends PhotoManager {
 
 

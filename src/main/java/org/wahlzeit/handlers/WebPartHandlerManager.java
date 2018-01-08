@@ -21,6 +21,7 @@
 package org.wahlzeit.handlers;
 
 import org.wahlzeit.services.LogBuilder;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,13 +30,14 @@ import java.util.logging.Logger;
 
 /**
  * A manager class for web parts.
+ */
  @PatternInstance(
- patternName = "Singleton"
+ patternName = "Singleton",
  participants = {
  "Singleton"
  }
  )
- */
+
 public class WebPartHandlerManager {
 
 	/**

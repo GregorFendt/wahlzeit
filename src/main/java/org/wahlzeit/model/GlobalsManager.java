@@ -4,6 +4,7 @@ import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
 import org.wahlzeit.services.ObjectManager;
 import org.wahlzeit.servlets.AbstractServlet;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.logging.Logger;
 
@@ -16,13 +17,13 @@ import static org.wahlzeit.services.OfyService.ofy;
  * @see #saveGlobals()
  * 
  * @review
+ */
  @PatternInstance(
- patternName = "Singleton"
+ patternName = "Singleton",
  participants = {
  "Singleton"
  }
  )
- */
 public class GlobalsManager extends ObjectManager {
 
 	private static final Logger log = Logger.getLogger(GlobalsManager.class.getName());
