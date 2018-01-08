@@ -29,6 +29,12 @@ import java.util.logging.Logger;
 
 /**
  * A manager class for web parts.
+ @PatternInstance(
+ patternName = "Singleton"
+ participants = {
+ "Singleton"
+ }
+ )
  */
 public class WebPartHandlerManager {
 

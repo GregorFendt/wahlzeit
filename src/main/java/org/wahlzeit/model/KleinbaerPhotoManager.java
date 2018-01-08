@@ -20,6 +20,12 @@ import java.util.logging.Logger;
 
 /**
  * KleinbaerPhotoManager manages Kleinbaer photos
+ @PatternInstance(
+ patternName = "Singleton"
+ participants = {
+ "Singleton"
+ }
+ )
  */
 public class KleinbaerPhotoManager extends PhotoManager {
 

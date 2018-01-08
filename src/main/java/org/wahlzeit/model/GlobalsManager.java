@@ -16,6 +16,12 @@ import static org.wahlzeit.services.OfyService.ofy;
  * @see #saveGlobals()
  * 
  * @review
+ @PatternInstance(
+ patternName = "Singleton"
+ participants = {
+ "Singleton"
+ }
+ )
  */
 public class GlobalsManager extends ObjectManager {
 

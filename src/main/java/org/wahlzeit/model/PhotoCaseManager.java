@@ -31,7 +31,13 @@ import java.util.Map;
 
 /**
  * The photo case manager provides access to and manages persistent photo cases.
- */
+@PatternInstance(
+		patternName = "Singleton"
+		participants = {
+				"Singleton"
+		}
+)
+*/
 public class PhotoCaseManager extends ObjectManager {
 
 	/**
