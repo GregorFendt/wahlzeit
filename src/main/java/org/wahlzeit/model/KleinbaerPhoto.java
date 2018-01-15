@@ -1,29 +1,42 @@
 /*
- *   Classname: KleinbaerPhoto
+ * Copyright (c) 2006-2009 by Dirk Riehle, http://dirkriehle.com
  *
- *   Version: 1.0 [created while doing 5th ADAP-homework]
+ * This file is part of the Wahlzeit photo rating application.
  *
- *   Date: 11.11.2017
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public
+ * License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
+
 package org.wahlzeit.model;
 
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Subclass;
 
+import java.util.List;
+
 /**
  * KleinbaerPhoto represents a Photo of a Kleinbaer {@link Kleinbaer}
  */
 @Entity
 @Subclass
-
 public class KleinbaerPhoto extends Photo {
 
     /**
-     *  The Kleinbaer in the Photo
+     *  Kleinbaeren in the Photo
      */
-    private Kleinbaer kleinbaer;
+    private List<Kleinbaer> kleinbaeren;
 
     /**
      * @methodtype initialization
@@ -34,13 +47,12 @@ public class KleinbaerPhoto extends Photo {
 
     /**
      * @methodtype initialization
-     * @param kleinbaer which is in the Photo
+     * @param kleinbaeren which are in the Photo
      */
-    public KleinbaerPhoto(Kleinbaer kleinbaer){
+    public KleinbaerPhoto(List<Kleinbaer> kleinbaeren){
         super();
-
-       assertKleinbaerNotNull(kleinbaer);
-        this.kleinbaer = kleinbaer;
+       assertKleinbaerNotNull(kleinbaeren);
+       this.kleinbaeren = kleinbaeren;
     }
 
     /**
@@ -53,30 +65,30 @@ public class KleinbaerPhoto extends Photo {
     /**
      * @methodtype initialization
      */
-    public KleinbaerPhoto(Kleinbaer kleinbaer, PhotoId id){
+    public KleinbaerPhoto(List<Kleinbaer> kleinbaeren, PhotoId id){
         super(id);
-        assertKleinbaerNotNull(kleinbaer);
-        this.kleinbaer = kleinbaer;
+        assertKleinbaerNotNull(kleinbaeren);
+        this.kleinbaeren = kleinbaeren;
     }
 
     /**
      * @methodtype get
-     * @return the Kleinbaer.class which is in the photo
+     * @return A List of Kleinbaeren which appear in the photo
      */
-    public Kleinbaer getKleinbaer(){
-        assertKleinbaerNotNull(kleinbaer);
+    public List<Kleinbaer> getKleinbaeren(){
+        assertKleinbaerNotNull(kleinbaeren);
 
-        return kleinbaer;
+        return kleinbaeren;
     }
 
     /**
      * @methodtype set
-     * @param kleinbaer is newly set for the photo
+     * @param kleinbaeren is newly set for the photo
      */
-    public void setKleinbaer(Kleinbaer kleinbaer){
-        assertKleinbaerNotNull(kleinbaer);
+    public void setKleinbaeren(List<Kleinbaer> kleinbaeren){
+        assertKleinbaerNotNull(kleinbaeren);
 
-        this.kleinbaer = kleinbaer;
+        this.kleinbaeren = kleinbaeren;
     }
 
     /**
@@ -84,13 +96,13 @@ public class KleinbaerPhoto extends Photo {
      */
 
     /**
-     * Asserts that the given Kleinbaer-class is not null
+     * Asserts that the given Kleinbaer-List is not null
      * @methodtype assertion
-     * @throws KleinbaerPhotoException if given Kleinbaer-class is null
+     * @throws KleinbaerPhotoException if given Kleinbaer-List is null
      */
-    private void assertKleinbaerNotNull(Kleinbaer kleinbaer){
-        if(kleinbaer == null){
-            throw new KleinbaerPhotoException("Kleinbaer-class mustn't be null");
+    private void assertKleinbaerNotNull(List<Kleinbaer> kleinbaeren){
+        if(kleinbaeren == null){
+            throw new KleinbaerPhotoException("Kleinbaer-List mustn't be null");
         }
     }
 

@@ -21,12 +21,12 @@ public class KleinbaerPhotoTest {
 
     @Test
     public void testGetters(){
-        assertEquals(photo.getKleinbaer(), testWaschbaer);
+        assertEquals(photo.getKleinbaeren(), testWaschbaer);
     }
 
     @Test
     public void testSetters(){
-        photo.setKleinbaer(testWickelbaer);
-        assertEquals(photo.getKleinbaer(), testWickelbaer);
+        photo.setKleinbaeren(testWickelbaer);
+        assertEquals(photo.getKleinbaeren(), testWickelbaer);
     }
 }

@@ -1,12 +1,26 @@
 /*
- *   Classname: Kleinbaer
+ * Copyright (c) 2006-2009 by Dirk Riehle, http://dirkriehle.com
  *
- *   Version: 1.0 [created 5th ADAP-homework]
+ * This file is part of the Wahlzeit photo rating application.
  *
- *   Date: 11.11.2017
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
  *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public
+ * License along with this program. If not, see
+ * <http://www.gnu.org/licenses/>.
  */
+
 package org.wahlzeit.model;
+
+import java.math.BigInteger;
 
 /**
  * Kleinbaer-Class represents a specific Kleinbaer
@@ -14,248 +28,56 @@ package org.wahlzeit.model;
 public class Kleinbaer {
 
     /**
-     * the scientific Declaration of Kleinbaer
-     */
-    private final String SCIENTIFIC_NAME = "Procyonidae";
-
-    /**
      * the genus of a Kleinbaer
      */
-    private kleinbaerengenus genus;
-
-
-    /**
-     * Accepted genera of Kleinbaer, mainly extinct genera are ignored
-     */
-    public enum kleinbaerengenus {
-        MAKIBAER, WICKELBAER, KATZENFRETT, WASCHBAER, NASENBAER, BERNASENBAER
-    }
+    protected KleinbaerGenus genus = null;
 
     /**
-     * The number of teeth a typical Kleinbaer-Genera has
-     * Fun Fact: Kleinbaer have 40 teeth, Wickelbaeren have one less per row(total of 36)
+     * counter to give out unique Id's
      */
-    private int numberOfTeeth;
+    private static Integer idCounter = new Integer(0);
 
     /**
-     * Max weight of the Kleinbaer-Genus in gram
+     * unique id of a Kleinbaer-Class
      */
-    private int maxWeight;
+    private Integer id;
 
-    /**
-     * Max tail length of the Kleinbaer-Genus in cm
-     */
-    private int maxTailLength;
-
-    /**
-     * max length of the Kleinbaer-Genus without counting the tail in cm
-     */
-    private int maxSnoutVentLength;
 
     /**
      * @methodtype initialize
      * initialized all the Kleinbaerfacts and the genus of the Kleinbaer
      * @param genus for which the Kleinbaerfacts are set
      */
-    public Kleinbaer(kleinbaerengenus genus){
+    public Kleinbaer(KleinbaerGenus genus){
         assertGenusNotNull(genus);
-
-        updateKleinbaerfacts(genus);
+        setId();
     }
 
     /**
-     * @methodtyp get
-     * @return the scientific family declaration for Kleinbaren
+     * @methodtype get
+     * @return ID of the Kleinbaer-Class
      */
-    public String getSCIENTIFIC_NAME() {
-        return SCIENTIFIC_NAME;
+    public Integer getId(){
+        return id;
+    }
+
+    /**
+     * @methodtype set
+     * sets the id for a Kleinbaer-Class
+     */
+    private synchronized void setId(){
+        id = idCounter++;
     }
 
     /**
      * @methodtype get
      * @return genus of the Kleinbaer
      */
-    public kleinbaerengenus getGenus(){
+    public KleinbaerGenus getGenus(){
         assertGenusNotNull(genus);
-
         return genus;
     }
 
-    /**
-     * @methodtype set
-     * @param newGenus Kleinbaer-Genus which is to be set
-     */
-    public void setGenus(kleinbaerengenus newGenus){
-        assertGenusNotNull(genus);
-
-        updateKleinbaerfacts(newGenus);
-        genus = newGenus;
-    }
-
-    /**
-     * @methodtype get
-     * @return the number of teeth the Kleinbaer has
-     */
-    public int getNumberOfTeeth(){
-        return numberOfTeeth;
-    }
-
-    /**
-     * @methodtype set
-     * @param genus for which the typical number of teeth get set
-     */
-    private void setNumberOfTeeth(kleinbaerengenus genus){
-        assertGenusNotNull(genus);
-
-        if(genus == kleinbaerengenus.WICKELBAER){
-            this.numberOfTeeth = 36;
-            return;
-        }
-        this.numberOfTeeth = 40;
-        return;
-    }
-
-    /**
-     * @methodtype set
-     * @param numberOfTeeth sets a specific amount of Teeth for a Kleinbaer
-     */
-    public void setNumberOfTeeth(int numberOfTeeth){
-        if(numberOfTeeth < 0){
-            throw new IllegalArgumentException();
-        }
-        this.numberOfTeeth = numberOfTeeth;
-    }
-
-    /**
-     * @methodtype get
-     * @return maxWeight of the Kleinbaer in gramms
-     */
-    public int getMaxWeight(){
-        return maxWeight;
-    }
-
-    /**
-     * @methodtype get
-     * @return maxTailLength of the Kleinbaer in cm
-     */
-    public int getMaxTailLength(){
-        return maxTailLength;
-    }
-
-    /**
-     * @methodtype get
-     * @return maxSnoutVentLength of the Kleinbaer in cm
-     */
-    public int getMaxSnoutVentLength(){
-        return maxSnoutVentLength;
-    }
-
-    /**
-     * @methodtype set
-     * @param genus sets the maxWeight for this genus in gramms
-     */
-    private void setMaxWeight(kleinbaerengenus genus){
-        assertGenusNotNull(genus);
-
-        switch (genus){
-            case MAKIBAER:
-                this.maxWeight = 1_500;
-                break;
-            case NASENBAER:
-                this.maxWeight = 6_000;
-                break;
-            case WASCHBAER:
-                this.maxWeight = 12_000;
-                break;
-            case WICKELBAER:
-                this.maxWeight = 4_600;
-                break;
-            case KATZENFRETT:
-                this.maxWeight = 1_300;
-                break;
-            case BERNASENBAER:
-                this.maxWeight = 1_500;
-                break;
-            default:
-                this.maxWeight = 12_000;
-        }
-    }
-
-    /**
-     * @methodtype set
-     * @param genus sets the max tail length for this genus in cm
-     */
-    private void setMaxTailLength(kleinbaerengenus genus){
-        assertGenusNotNull(genus);
-
-        switch (genus){
-            case MAKIBAER:
-                this.maxTailLength = 48;
-                break;
-            case NASENBAER:
-                this.maxTailLength = 68;
-                break;
-            case WASCHBAER:
-                this.maxTailLength = 40;
-                break;
-            case WICKELBAER:
-                this.maxTailLength = 55;
-                break;
-            case KATZENFRETT:
-                this.maxTailLength = 44;
-                break;
-            case BERNASENBAER:
-                this.maxTailLength = 24;
-                break;
-            default:
-                this.maxWeight = 68;
-        }
-    }
-
-    /**
-     * @methodtype set
-     * @param genus sets the max length(without the tail) for this genus in cm
-     */
-    private void setMaxSnoutVentLength(kleinbaerengenus genus){
-        assertGenusNotNull(genus);
-
-        switch (genus){
-            case MAKIBAER:
-                this.maxSnoutVentLength = 48;
-                break;
-            case NASENBAER:
-                this.maxSnoutVentLength = 70;
-                break;
-            case WASCHBAER:
-                this.maxSnoutVentLength = 60;
-                break;
-            case WICKELBAER:
-                this.maxSnoutVentLength = 60;
-                break;
-            case KATZENFRETT:
-                this.maxSnoutVentLength = 42;
-                break;
-            case BERNASENBAER:
-                this.maxSnoutVentLength = 39;
-                break;
-            default:
-                this.maxWeight = 70;
-        }
-    }
-
-    /**
-     * @methodtyp set
-     * Method sets all Facts for the new genus
-     * @param newGenus the genus for which the global variables are updated
-     */
-    private void updateKleinbaerfacts(kleinbaerengenus newGenus){
-        assertGenusNotNull(newGenus);
-
-        setNumberOfTeeth(newGenus);
-        setMaxWeight(newGenus);
-        setMaxSnoutVentLength(newGenus);
-        setMaxTailLength(newGenus);
-    }
     /**
      * ------------------------ Assertions ------------------------
      */
@@ -263,11 +85,11 @@ public class Kleinbaer {
     /**
      * Asserts that the given genus is not null
      * @methodtype assertion
-     * @throws KleinbaerException if given kleinbaerengenus is null
+     * @throws KleinbaerException if given KleinbaerGenus-Class is null
      */
-    private void assertGenusNotNull(kleinbaerengenus genus){
+    private void assertGenusNotNull(KleinbaerGenus genus){
         if(genus == null){
-            throw new KleinbaerException("kleinbaerengenus mustn't be null");
+            throw new KleinbaerException("KleinbaerGenus mustn't be null");
         }
     }
 
