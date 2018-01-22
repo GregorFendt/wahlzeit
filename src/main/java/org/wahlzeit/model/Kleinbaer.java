@@ -20,11 +20,12 @@
 
 package org.wahlzeit.model;
 
-import java.math.BigInteger;
+import com.googlecode.objectify.annotation.Entity;
 
 /**
  * Kleinbaer-Class represents a specific Kleinbaer
  */
+@Entity
 public class Kleinbaer {
 
     /**

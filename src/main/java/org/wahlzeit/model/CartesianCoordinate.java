@@ -9,9 +9,12 @@
 package org.wahlzeit.model;
 
 
+import com.googlecode.objectify.annotation.Subclass;
+
 /**
  * A cartesian coordinate to represent a location(x,y,z) in a cartesian coordinate system. x, y, z are specified in double precision
  */
+@Subclass
 public class CartesianCoordinate extends AbstractCoordinate {
 
     /**

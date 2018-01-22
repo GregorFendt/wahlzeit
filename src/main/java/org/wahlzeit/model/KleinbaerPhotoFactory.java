@@ -7,6 +7,7 @@
  *
  */package org.wahlzeit.model;
 
+import com.googlecode.objectify.annotation.Subclass;
 import org.wahlzeit.services.LogBuilder;
 
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import java.util.logging.Logger;
 /**
  * KleinbaerPhotoFactory creates KleinbaerPhotos
  */
+@Subclass
 public class KleinbaerPhotoFactory extends PhotoFactory{
 
     private static final Logger log = Logger.getLogger(KleinbaerPhotoFactory.class.getName());
@@ -27,7 +29,7 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
      *
      */
     protected KleinbaerPhotoFactory(){
-        //do nothing
+        super();
     }
 
     /**
@@ -63,7 +65,6 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
      * @return creates a KleinbaerPhoto
      */
     public KleinbaerPhoto createPhoto(){
-        KleinbaerPhoto photo = null;
         return new KleinbaerPhoto();
     }
 
@@ -76,7 +77,7 @@ public class KleinbaerPhotoFactory extends PhotoFactory{
         return new KleinbaerPhoto(id);
     }
 
-    public KleinbaerPhoto createPhoto(Kleinbaer.kleinbaerengenus genus){
+    public KleinbaerPhoto createPhoto(KleinbaerGenus genus){
         KleinbaerPhoto photo =  new KleinbaerPhoto(new Kleinbaer(genus));
         return photo;
     }

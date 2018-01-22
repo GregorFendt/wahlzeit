@@ -9,9 +9,12 @@
 package org.wahlzeit.model;
 
 
+import com.googlecode.objectify.annotation.Subclass;
+
 /**
  * Implementation of the CartesianCoordinate Interface as a geographic coordinate system
  */
+@Subclass
 public class SphericCoordinate extends AbstractCoordinate {
 
     /**

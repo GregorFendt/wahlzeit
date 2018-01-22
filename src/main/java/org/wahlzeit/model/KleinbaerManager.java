@@ -20,11 +20,19 @@
 
 package org.wahlzeit.model;
 
+import com.googlecode.objectify.annotation.Entity;
+import org.wahlzeit.services.ObjectManager;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class KleinbaerManager {
+@Entity
+public class KleinbaerManager extends ObjectManager {
 
+    /**
+     * Singleton instance of KleinbaerManager
+     */
+    private static final KleinbaerManager manager = new KleinbaerManager();
     /**
      * Accepted genera of Kleinbaer, mainly extinct genera are ignored
      */
@@ -35,14 +43,29 @@ public class KleinbaerManager {
     /**
      * List of all Kleinbaer-Classes
      */
-    protected Map<Integer, Kleinbaer> kleinbaerList = new HashMap<Integer, Kleinbaer>();
+    protected Map<Integer, Kleinbaer> kleinbaerHashmap = new HashMap<Integer, Kleinbaer>();
 
     /**
      * List of all KleinbaerGenera
      */
-    protected Map<String, KleinbaerGenus> genusList = new HashMap<String, KleinbaerGenus>();
+    protected Map<String, KleinbaerGenus> genusHashMap = new HashMap<String, KleinbaerGenus>();
 
-    protected static final KleinbaerManager manager = new KleinbaerManager();
+    /**
+     * private constructor
+     */
+    
+    private KleinbaerManager(){
+        //do nothing
+    }
+
+    /**
+     * @methodtype getter
+     * @return the only instance of KleinbaerManager
+     */
+    public static KleinbaerManager getInstance(){
+        assertManagerNotNull();
+        return manager;
+    }
 
     /**
      * Creates a new KleinbaerClass out of the given genus
@@ -53,7 +76,7 @@ public class KleinbaerManager {
         assertIsValidKleinbaerGenus(genus);
         KleinbaerGenus kg = getKleinbaerGenus(genus);
         Kleinbaer result = kg.createInstance();
-        kleinbaerList.put(result.getId(), result);
+        kleinbaerHashmap.put(result.getId(), result);
         return result;
     }
 
@@ -64,24 +87,41 @@ public class KleinbaerManager {
     public KleinbaerGenus createKleinbaerGenus(String genus, int numberOfTeeth, int maxWeight, int maxTailLength, int maxSnoutVentLength){
         assertGenusDoesNotExist(genus);
         KleinbaerGenus kg = new KleinbaerGenus(numberOfTeeth, maxWeight, maxTailLength, maxSnoutVentLength);
-        genusList.put(genus, kg);
+        genusHashMap.put(genus, kg);
         return kg;
     }
 
+    /**
+     * @methodtype getter
+     * @param genus Name of the Genus to be returned
+     * @return the Kleinbaergenus with the name genus if already created
+     */
     protected KleinbaerGenus getKleinbaerGenus(String genus){
-        return genusList.get(genus);
+        assertIsValidKleinbaerGenus(genus);
+        return genusHashMap.get(genus);
     }
+
     /**
      * ------------------------ Assertions ------------------------
      */
 
+    /**
+     * Assert if the static initialized manager is not null
+     * @methodtype assertion
+     * @throws KleinbaerException if manager was null
+     */
+    private static void assertManagerNotNull(){
+        if(manager == null){
+            throw new KleinbaerException("Static initialized manager was null!");
+        }
+    }
     /**
      * Asserts if the given genus already exists
      * @methodtype assertion
      * @throws KleinbaerException if given KleinbaerGenus doesnt exist
      */
     private void assertIsValidKleinbaerGenus(String genus){
-        if(!genusList.containsKey(genus)) {
+        if(!genusHashMap.containsKey(genus)) {
             throw new KleinbaerException("Given KleinbaerGenus doesn't exist yet!");
         }
     }
@@ -92,7 +132,7 @@ public class KleinbaerManager {
      * @throws KleinbaerException if given KleinbaerGenus already exists in the genusList
      */
     private void assertGenusDoesNotExist(String genus){
-        if(genusList.containsKey(genus)){
+        if(genusHashMap.containsKey(genus)){
             throw new KleinbaerException("KleinbaerGenus can't be created twice!");
         }
     }

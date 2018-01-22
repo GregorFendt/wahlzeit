@@ -18,6 +18,10 @@ public class Location {
      */
     private Coordinate coordinate;
 
+    public Location(Coordinate coord){
+        this.coordinate = coord;
+    }
+
     /**
      * @methodtype get
      * Getter method for the Coordinate-class of Location

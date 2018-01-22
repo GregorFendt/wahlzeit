@@ -24,6 +24,7 @@ package org.wahlzeit.model;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Subclass;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,6 +44,16 @@ public class KleinbaerPhoto extends Photo {
      */
     public KleinbaerPhoto(){
         super();
+    }
+
+    /**
+     * @methodtype initialization
+     */
+    public KleinbaerPhoto(Kleinbaer kleinbaer){
+        super();
+        List<Kleinbaer> list = new ArrayList<>();
+        list.add(kleinbaer);
+        kleinbaeren = list;
     }
 
     /**
@@ -77,7 +88,6 @@ public class KleinbaerPhoto extends Photo {
      */
     public List<Kleinbaer> getKleinbaeren(){
         assertKleinbaerNotNull(kleinbaeren);
-
         return kleinbaeren;
     }
 
@@ -87,7 +97,6 @@ public class KleinbaerPhoto extends Photo {
      */
     public void setKleinbaeren(List<Kleinbaer> kleinbaeren){
         assertKleinbaerNotNull(kleinbaeren);
-
         this.kleinbaeren = kleinbaeren;
     }
 
