@@ -53,7 +53,7 @@ public class KleinbaerManager extends ObjectManager {
     /**
      * private constructor
      */
-    
+
     private KleinbaerManager(){
         //do nothing
     }
